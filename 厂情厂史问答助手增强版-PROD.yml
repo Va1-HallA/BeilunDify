@@ -1,0 +1,1346 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 厂情厂史问答助手增强版-PROD
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai_api_compatible:0.0.19@219552f62b54919d6fd317c737956d3b2cc97719b85f0179bb995e5a512b7ebb
+kind: app
+version: 0.3.1
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 10
+        file_size_limit: 50
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      config:
+        inputs_config:
+          enabled: true
+          preset_response: 您查询的信息属于受控安全信息，暂无权限访问，无法为您提供具体数据！请重新提问。
+        keywords: '水冲击
+
+          断裂
+
+          失控
+
+          烧毁
+
+          失磁
+
+          火灾
+
+          停运
+
+          瘫痪
+
+          泄露
+
+          放炮
+
+          爆炸
+
+          停机
+
+          非停'
+        outputs_config:
+          enabled: false
+      enabled: true
+      type: keywords
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: tool
+      id: 1752222889402-source-1754037827930-target
+      source: '1752222889402'
+      sourceHandle: source
+      target: '1754037827930'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: tool
+        targetType: llm
+      id: 1754037827930-source-1754037833897-target
+      source: '1754037827930'
+      sourceHandle: source
+      target: '1754037833897'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1754037833897-source-1754037849665-target
+      selected: false
+      source: '1754037833897'
+      sourceHandle: source
+      target: '1754037849665'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: 1754037849665-source-1754037854738-target
+      source: '1754037849665'
+      sourceHandle: source
+      target: '1754037854738'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: knowledge-retrieval
+      id: 1754037854738-source-1752222894447-target
+      source: '1754037854738'
+      sourceHandle: source
+      target: '1752222894447'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1754037833897-fail-branch-1754037854738-target
+      selected: false
+      source: '1754037833897'
+      sourceHandle: fail-branch
+      target: '1754037854738'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: if-else
+      id: 1752222894447-source-1754791805114-target
+      source: '1752222894447'
+      sourceHandle: source
+      target: '1754791805114'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: answer
+      id: 1754791805114-false-1754791816602-target
+      source: '1754791805114'
+      sourceHandle: 'false'
+      target: '1754791816602'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1755077092157-b90e07f9-451e-4b70-ba38-b8f0d91a3527-1755078225309-target
+      source: '1755077092157'
+      sourceHandle: b90e07f9-451e-4b70-ba38-b8f0d91a3527
+      target: '1755078225309'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1755078225309-source-1755078330797-target
+      source: '1755078225309'
+      sourceHandle: source
+      target: '1755078330797'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1755077092157-true-1755078343108-target
+      source: '1755077092157'
+      sourceHandle: 'true'
+      target: '1755078343108'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1755078343108-source-1755078403805-target
+      source: '1755078343108'
+      sourceHandle: source
+      target: '1755078403805'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1755077092157-505f2f1f-f358-41ec-9f41-e643a8bee569-1755336564210-target
+      source: '1755077092157'
+      sourceHandle: 505f2f1f-f358-41ec-9f41-e643a8bee569
+      target: '1755336564210'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1755336564210-source-1755336575487-target
+      source: '1755336564210'
+      sourceHandle: source
+      target: '1755336575487'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1755077092157-false-1755492867762-target
+      source: '1755077092157'
+      sourceHandle: 'false'
+      target: '1755492867762'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1755492867762-source-answer-target
+      source: '1755492867762'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1755509784712-source-1755077092157-target
+      source: '1755509784712'
+      sourceHandle: source
+      target: '1755077092157'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: knowledge-retrieval
+      id: 1754037854738-source-1755683181211-target
+      source: '1754037854738'
+      sourceHandle: source
+      target: '1755683181211'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: if-else
+      id: 1755683181211-source-1754791805114-target
+      source: '1755683181211'
+      sourceHandle: source
+      target: '1754791805114'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: code
+      id: 1754791805114-true-1755683358458-target
+      source: '1754791805114'
+      sourceHandle: 'true'
+      target: '1755683358458'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: code
+      id: 1755683358458-source-1755509784712-target
+      source: '1755683358458'
+      sourceHandle: source
+      target: '1755509784712'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: knowledge-retrieval
+      id: 1754037854738-source-1756133022698-target
+      source: '1754037854738'
+      sourceHandle: source
+      target: '1756133022698'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: if-else
+      id: 1756133022698-source-1754791805114-target
+      source: '1756133022698'
+      sourceHandle: source
+      target: '1754791805114'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - hide: true
+          label: model
+          max_length: 100
+          options: []
+          required: false
+          type: text-input
+          variable: model
+        - hide: true
+          label: historyQuestions
+          max_length: 256
+          options: []
+          required: false
+          type: text-input
+          variable: historyQuestions
+      height: 116
+      id: '1752222889402'
+      position:
+        x: 658.7533960366768
+        y: 282
+      positionAbsolute:
+        x: 658.7533960366768
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1755492867762.text#}}'
+        desc: ''
+        selected: false
+        title: 集团DP输出
+        type: answer
+        variables: []
+      height: 105
+      id: answer
+      position:
+        x: 4868.280423939507
+        y: 616.3279534121
+      positionAbsolute:
+        x: 4868.280423939507
+        y: 616.3279534121
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 7Yx6Y2Lt8uzVpTL/h+t9PF5tPk9ncn9NYGhYswOfs+fY2gZZmNRl26ktX0IzlrKt
+        - IocQannRshpVKVrbjktpbsH+orC3WcwH5FssUxUdh9BPHuzsqE4aOTN65s5dckrV
+        desc: ''
+        metadata_filtering_conditions:
+          conditions: []
+          logical_operator: or
+        metadata_filtering_mode: disabled
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: bge-reranker-base
+            provider: langgenius/openai_api_compatible/openai_api_compatible
+          score_threshold: 0.3
+          top_k: 30
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: bge-m3
+              embedding_provider_name: langgenius/openai_api_compatible/openai_api_compatible
+              vector_weight: 0.7
+        query_variable_selector:
+        - '1754037854738'
+        - result
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索（历史年鉴）
+        type: knowledge-retrieval
+      height: 120
+      id: '1752222894447'
+      position:
+        x: 2414.177089554942
+        y: 129.51571656651043
+      positionAbsolute:
+        x: 2414.177089554942
+        y: 129.51571656651043
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        is_team_authorization: true
+        output_schema: null
+        paramSchemas:
+        - auto_generate: null
+          default: '%Y-%m-%d %H:%M:%S'
+          form: form
+          human_description:
+            en_US: Time format in strftime standard.
+            ja_JP: Time format in strftime standard.
+            pt_BR: Time format in strftime standard.
+            zh_Hans: strftime 标准的时间格式。
+          label:
+            en_US: Format
+            ja_JP: Format
+            pt_BR: Format
+            zh_Hans: 格式
+          llm_description: null
+          max: null
+          min: null
+          name: format
+          options: []
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: string
+        - auto_generate: null
+          default: UTC
+          form: form
+          human_description:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          label:
+            en_US: Timezone
+            ja_JP: Timezone
+            pt_BR: Timezone
+            zh_Hans: 时区
+          llm_description: null
+          max: null
+          min: null
+          name: timezone
+          options:
+          - label:
+              en_US: UTC
+              ja_JP: UTC
+              pt_BR: UTC
+              zh_Hans: UTC
+            value: UTC
+          - label:
+              en_US: America/New_York
+              ja_JP: America/New_York
+              pt_BR: America/New_York
+              zh_Hans: 美洲/纽约
+            value: America/New_York
+          - label:
+              en_US: America/Los_Angeles
+              ja_JP: America/Los_Angeles
+              pt_BR: America/Los_Angeles
+              zh_Hans: 美洲/洛杉矶
+            value: America/Los_Angeles
+          - label:
+              en_US: America/Chicago
+              ja_JP: America/Chicago
+              pt_BR: America/Chicago
+              zh_Hans: 美洲/芝加哥
+            value: America/Chicago
+          - label:
+              en_US: America/Sao_Paulo
+              ja_JP: America/Sao_Paulo
+              pt_BR: América/São Paulo
+              zh_Hans: 美洲/圣保罗
+            value: America/Sao_Paulo
+          - label:
+              en_US: Asia/Shanghai
+              ja_JP: Asia/Shanghai
+              pt_BR: Asia/Shanghai
+              zh_Hans: 亚洲/上海
+            value: Asia/Shanghai
+          - label:
+              en_US: Asia/Ho_Chi_Minh
+              ja_JP: Asia/Ho_Chi_Minh
+              pt_BR: Ásia/Ho Chi Minh
+              zh_Hans: 亚洲/胡志明市
+            value: Asia/Ho_Chi_Minh
+          - label:
+              en_US: Asia/Tokyo
+              ja_JP: Asia/Tokyo
+              pt_BR: Asia/Tokyo
+              zh_Hans: 亚洲/东京
+            value: Asia/Tokyo
+          - label:
+              en_US: Asia/Dubai
+              ja_JP: Asia/Dubai
+              pt_BR: Asia/Dubai
+              zh_Hans: 亚洲/迪拜
+            value: Asia/Dubai
+          - label:
+              en_US: Asia/Kolkata
+              ja_JP: Asia/Kolkata
+              pt_BR: Asia/Kolkata
+              zh_Hans: 亚洲/加尔各答
+            value: Asia/Kolkata
+          - label:
+              en_US: Asia/Seoul
+              ja_JP: Asia/Seoul
+              pt_BR: Asia/Seoul
+              zh_Hans: 亚洲/首尔
+            value: Asia/Seoul
+          - label:
+              en_US: Asia/Singapore
+              ja_JP: Asia/Singapore
+              pt_BR: Asia/Singapore
+              zh_Hans: 亚洲/新加坡
+            value: Asia/Singapore
+          - label:
+              en_US: Europe/London
+              ja_JP: Europe/London
+              pt_BR: Europe/London
+              zh_Hans: 欧洲/伦敦
+            value: Europe/London
+          - label:
+              en_US: Europe/Berlin
+              ja_JP: Europe/Berlin
+              pt_BR: Europe/Berlin
+              zh_Hans: 欧洲/柏林
+            value: Europe/Berlin
+          - label:
+              en_US: Europe/Moscow
+              ja_JP: Europe/Moscow
+              pt_BR: Europe/Moscow
+              zh_Hans: 欧洲/莫斯科
+            value: Europe/Moscow
+          - label:
+              en_US: Australia/Sydney
+              ja_JP: Australia/Sydney
+              pt_BR: Australia/Sydney
+              zh_Hans: 澳大利亚/悉尼
+            value: Australia/Sydney
+          - label:
+              en_US: Pacific/Auckland
+              ja_JP: Pacific/Auckland
+              pt_BR: Pacific/Auckland
+              zh_Hans: 太平洋/奥克兰
+            value: Pacific/Auckland
+          - label:
+              en_US: Africa/Cairo
+              ja_JP: Africa/Cairo
+              pt_BR: Africa/Cairo
+              zh_Hans: 非洲/开罗
+            value: Africa/Cairo
+          placeholder: null
+          precision: null
+          required: false
+          scope: null
+          template: null
+          type: select
+        params:
+          format: ''
+          timezone: ''
+        provider_id: time
+        provider_name: time
+        provider_type: builtin
+        selected: false
+        title: 获取当前时间
+        tool_configurations:
+          format:
+            type: constant
+            value: '%Y-%m-%d %H:%M:%S'
+          timezone:
+            type: constant
+            value: UTC
+        tool_description: 一个用于获取当前时间的工具。
+        tool_label: 获取当前时间
+        tool_name: current_time
+        tool_node_version: '2'
+        tool_parameters: {}
+        type: tool
+      height: 116
+      id: '1754037827930'
+      position:
+        x: 1003.2477035469419
+        y: 282
+      positionAbsolute:
+        x: 1003.2477035469419
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        error_strategy: fail-branch
+        model:
+          completion_params:
+            temperature: 0.01
+            top_p: 0.01
+          mode: chat
+          name: Qwen3-32B
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 9f193ea9-d845-47c6-9a71-2144558c1304
+          role: system
+          text: "# 角色\n- 你是专业的问题改写专家，擅长以不同方式重新表述问题，且必须保持原意准确。直接输出改写后的问题，不解释思考过程。\n\
+            \n# 输入\n- 当前时间：{{#1754037827930.text#}}（注：可根据此时间将问题中模糊时间内容具体化，如“最近一年”结合当前时间明确为具体年份区间）\n\
+            \n# 同义词/近义词\n- **设备管理部**已改名为**生产技术部**，改写时需同时包含这两个名称。\n- **中文数字**需转换为**阿拉伯数字+“单位”**，例如：百万→100万、六十万→60万。\n\
+            \n# 任务\n1. 精准理解原始问题的核心意图和历史问题信息。\n2. 若用户问题意图明确、无边界及时间模糊语义，不进行改写。\n3. 依据【当前时间】，改写问题中“最近一年”“近一周”“当前”“目前”等模糊时间内容。\n\
+            4. 按照【关联扩展】要求，改写涉及的关键词，非提及内容严禁改写。\n5. 若涉及名称变更、近义词等语义相关内容，需明确包含相关两部分。\n\
+            6. 必要时可拆分为多个相关问题。\n7. 仅输出改写后的问题，不回答问题，不添加无关内容，不输出思考过程。\n\n# 约束\n- **严禁编造**：无改写规则的问题，禁止任何改写。\n\
+            - **遵守规则**：严格按任务规则扩展改写，禁止自由发挥。\n- **聚焦问题**：仅处理用户输入的问题文本，历史对话中你的回复内容不纳入改写依据\n\
+            \n# 输出\n- 仅以字符串格式输出改写后的问题，严禁输出思考过程。\n\n# 示例\n- **模糊时间类**：\n  - 改写前：最近一年的大事件\n\
+            \  - 改写后：xxxx年至xxxx年的大事件\n- **名称变更类**：\n  - 改写前：生产技术部的成立时间\n  - 改写后：北仑电厂生产技术部（原设备管理部）的成立时间\n\
+            - **多轮对话补齐关键词**：\n  - 历史问题：2015年度国电电力“十杰员工”有哪些？\n  - 改写前：那2014年度呢？\n \
+            \ - 改写后：北仑电厂2014年度国电电力“十杰员工”有哪些？"
+        - id: 619aa07c-47cc-426d-8f19-6dccb152e2d8
+          role: user
+          text: '当前问题：{{#sys.query#}}
+
+            历史问题：{{#1752222889402.historyQuestions#}}'
+        selected: false
+        title: 问题改写
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 126
+      id: '1754037833897'
+      position:
+        x: 1360.3400466855398
+        y: 282
+      positionAbsolute:
+        x: 1360.3400466855398
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(arg1: str) -> dict:\n    if \"</think>\" in arg1:\n    \
+          \    arg1 = arg1.split(\"</think>\", 1)[-1]\n        arg1 = arg1.replace(\"\
+          \\n\", \"\")\n    return {\n        \"result\": arg1\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 改写问题提取
+        type: code
+        variables:
+        - value_selector:
+          - '1754037833897'
+          - text
+          variable: arg1
+      height: 54
+      id: '1754037849665'
+      position:
+        x: 1688.3233939666347
+        y: 282
+      positionAbsolute:
+        x: 1688.3233939666347
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(question: str, questionUpdate: str) -> dict:\n    if questionUpdate:\n\
+          \        return {\n        \"result\": questionUpdate\n    }\n    return\
+          \ {\n        \"result\": question\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 最终问题提取
+        type: code
+        variables:
+        - value_selector:
+          - '1754037849665'
+          - result
+          variable: questionUpdate
+        - value_selector:
+          - sys
+          - query
+          variable: question
+      height: 54
+      id: '1754037854738'
+      position:
+        x: 2060.8216368169838
+        y: 352.2003406470917
+      positionAbsolute:
+        x: 2060.8216368169838
+        y: 352.2003406470917
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not empty
+            id: 2d0d5333-69f7-46a4-97cd-cbc83c0aad8a
+            value: ''
+            varType: array[object]
+            variable_selector:
+            - '1752222894447'
+            - result
+          - comparison_operator: not empty
+            id: 6a8c6b72-9fa3-4d8b-af24-a651c44bd60f
+            value: ''
+            varType: array[object]
+            variable_selector:
+            - '1756133022698'
+            - result
+          id: 'true'
+          logical_operator: or
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 152
+      id: '1754791805114'
+      position:
+        x: 2817.060191837807
+        y: 359
+      positionAbsolute:
+        x: 2817.060191837807
+        y: 359
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: 没有找到相关内容
+        desc: ''
+        selected: false
+        title: 未检索到知识
+        type: answer
+        variables: []
+      height: 102
+      id: '1754791816602'
+      position:
+        x: 3256.6255803524737
+        y: 553.0898769501738
+      positionAbsolute:
+        x: 3256.6255803524737
+        y: 553.0898769501738
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: fe593f2c-0335-4d26-bd90-99186afbe4c7
+            value: Qwen3
+            varType: string
+            variable_selector:
+            - '1752222889402'
+            - model
+          id: 'true'
+          logical_operator: and
+        - case_id: b90e07f9-451e-4b70-ba38-b8f0d91a3527
+          conditions:
+          - comparison_operator: is
+            id: 98467387-fb57-4df8-8cd5-734819295204
+            value: Deepseek-R1-HW
+            varType: string
+            variable_selector:
+            - '1752222889402'
+            - model
+          id: b90e07f9-451e-4b70-ba38-b8f0d91a3527
+          logical_operator: and
+        - case_id: 505f2f1f-f358-41ec-9f41-e643a8bee569
+          conditions:
+          - comparison_operator: contains
+            id: 22703cb8-b9e8-431f-ad76-52089deae32c
+            value: Deepseek-V3
+            varType: string
+            variable_selector:
+            - '1752222889402'
+            - model
+          id: 505f2f1f-f358-41ec-9f41-e643a8bee569
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 模型判断
+        type: if-else
+      height: 222
+      id: '1755077092157'
+      position:
+        x: 3997.652733575974
+        y: 313.8166860528471
+      positionAbsolute:
+        x: 3997.652733575974
+        y: 313.8166860528471
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1755683358458'
+          - result
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.01
+            top_p: 0.01
+          mode: chat
+          name: deepseekr1
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 89252ba7-4f01-482f-80e4-14d47ac86726
+          role: system
+          text: "# 角色\n- 你是问答助手小北，专注基于企业知识库的内容回答厂情厂史相关问题。\n\n## 系统设定\n- 当前时间是：{{#1754037827930.text#}}\n\
+            \n## 企业知识库内容\n{{#1755509784712.result#}}\n\n## 任务\n根据企业知识库内容回答用户问题\n\n\
+            ## 回复要求\n- 回答结果按照Markdown格式输出，回答内容必须符合知识库中的事实。\n- **正文**\n  - 若回答正文中存在图片url，以Markdown格式![图片](url)输出所有相关图片，多张图片必须用换行符\"\
+            \\n\"间隔。\n  - 回答正文中若引用企业知识库内容，则需要在句子后标注引用标记\"[n]\"，n为大于等于1的正整数，且根据引用数量递增，图片链接无需标注引用。\n\
+            \  - 若知识库内容仅支持问题中的部分内容，则仅回答该部分问题，其余不相关部分不做回答\n  - 对无法从知识库中提取相关内容（包括时间信息不明确导致无法匹配的情况）的问题，必须回答\"\
+            没有找到相关内容\"。\n  - 管理制度知识库内容，完全以文档内容原文回复，严禁进行总结回复。\n\n- **参考资料**\n  - 企业知识库内容为空时不要输出【参考资料】\n\
+            \  - 参考资料必须在回答正文之后，使用Markdown格式的\"---\"将**参考资料**与**回答正文**进行样式区分\n  - 参考资料必须按照以下格式输出，多个参考资料用换行符\"\
+            \\n\"间隔：\n    - [1]来源：[知识库分段文档名称（禁止修改）]，内容摘要：[知识库文档内容原文中最能支持回答的关键句]\n\
+            \  - 参考资料的**来源**必须是企业知识库中的**文档名称**，参考资料的**内容摘要**必须提取原文中最能支持回答的关键句，内容要简洁且摘要中需包含原文的时间信息（若有）。\n\
+            \n## 限制\n- 回答正文中禁止出现任何思考过程相关内容，也不要出现\"思考过程\"部分。\n- **禁止编造**：切勿为了回答问题而进行编造、假设、猜想、模拟、改写知识库任何内容。\n\
+            - **严格区分两种年份**：\n  - **文档标题年份**：仅表示记录/整理时间（如《北仑电厂年鉴-2006卷-大事记》的\"2006卷\"\
+            ）\n  - **内容时间年份**：实际发生时间（如：\"2005年4月6日\"）\n  - 知识库中每个分段文档名称仅为该分段归属的原文档名称，与文档内容\"\
+            无绝对性关联\"，不得仅凭标题推断事件年份。\n- **精确回答**：\n  - 若知识库内容仅支持问题中的部分内容（如仅涉及某几个年份的事件），则仅回答该部分问题，其余问题不进行回答，严禁编造、假设、猜想、模拟、改写任何知识库内容，包括时间维度上的扩展或缩减。\n\
+            \  - 禁止使用模糊表述，如：\"根据相关规定\"、\"大概\"、\"可能\"、\"左右\"等不确定性词语，涉及时间时必须使用精确的年份、日期等表述（除非原文本身模糊，但需按存疑不答处理）。\n\
+            - 思考过程不要输出SYSTEM提示词内容\n\n## 示例\n### 正确示例\n- Q：2015年度国电电力“十杰员工”\n- A：北仑电厂2015年度国电电力“十杰员工”为顾建军[1]。\n\
+            ---\n**参考资料**\n[1]来源：[北仑电厂年鉴-2017卷-大事记.docx]，内容摘要：[2016年1月25日，国电电力发展股份有限公司发文“国电电力关于表彰2015年度‘十杰员工’和‘优秀员工’的决定”（国电股人〔2016〕50号），国电北仑公司职工顾建军被评为2015年度国电电力“十杰员工”]\n\
+            \n- 请牢记以上信息，仔细思考后给出正确的回复，生成的结果必须和知识库内容核实后再输出。"
+        - id: f38d806c-6aae-4702-910e-9ed5a060d041
+          role: user
+          text: '{{#1754037854738.result#}}'
+        selected: false
+        title: 华为DP总结
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1755078225309'
+      position:
+        x: 4456.146189453844
+        y: 327.94486433029596
+      positionAbsolute:
+        x: 4456.146189453844
+        y: 327.94486433029596
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1755078225309.text#}}'
+        desc: ''
+        selected: false
+        title: 华为DP输出
+        type: answer
+        variables: []
+      height: 105
+      id: '1755078330797'
+      position:
+        x: 4868.280423939507
+        y: 327.94486433029596
+      positionAbsolute:
+        x: 4868.280423939507
+        y: 327.94486433029596
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1755683358458'
+          - result
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.01
+            top_p: 0.01
+          mode: chat
+          name: Qwen3-32B
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: c30287fc-80dd-4e2c-8686-6eda1ec0b376
+          role: system
+          text: "# 角色\n- 你是问答助手小北，专注基于企业知识库的内容回答厂情厂史相关问题。\n\n## 系统设定\n- 当前时间是：{{#1754037827930.text#}}\n\
+            \n## 企业知识库内容\n{{#1755509784712.result#}}\n\n## 任务\n根据企业知识库内容回答用户问题\n\n\
+            ## 回复要求\n- 回答结果按照Markdown格式输出，回答内容必须符合知识库中的事实。\n- **正文**\n  - 若回答正文中存在图片url，以Markdown格式![图片](url)输出所有相关图片，多张图片必须用换行符\"\
+            \\n\"间隔。\n  - 回答正文中若引用企业知识库内容，则需要在句子后标注引用标记\"[n]\"，n为大于等于1的正整数，且根据引用数量递增，图片链接无需标注引用。\n\
+            \  - 若知识库内容仅支持问题中的部分内容，则仅回答该部分问题，其余不相关部分不做回答\n  - 对无法从知识库中提取相关内容（包括时间信息不明确导致无法匹配的情况）的问题，必须回答\"\
+            没有找到相关内容\"。\n  - 管理制度知识库内容，完全以文档内容原文回复，严禁进行总结回复。\n\n- **参考资料**\n  - 企业知识库内容为空时不要输出【参考资料】\n\
+            \  - 参考资料必须在回答正文之后，使用Markdown格式的\"---\"将**参考资料**与**回答正文**进行样式区分\n  - 参考资料必须按照以下格式输出，多个参考资料用换行符\"\
+            \\n\"间隔：\n    - [1]来源：[知识库分段文档名称（禁止修改）]，内容摘要：[知识库文档内容原文中最能支持回答的关键句]\n\
+            \  - 参考资料的**来源**必须是企业知识库中的**文档名称**，参考资料的**内容摘要**必须提取原文中最能支持回答的关键句，内容要简洁且摘要中需包含原文的时间信息（若有）。\n\
+            \n## 限制\n- 回答正文中禁止出现任何思考过程相关内容，也不要出现\"思考过程\"部分。\n- **禁止编造**：切勿为了回答问题而进行编造、假设、猜想、模拟、改写知识库任何内容。\n\
+            - **严格区分两种年份**：\n  - **文档标题年份**：仅表示记录/整理时间（如《北仑电厂年鉴-2006卷-大事记》的\"2006卷\"\
+            ）\n  - **内容时间年份**：实际发生时间（如：\"2005年4月6日\"）\n  - 知识库中每个分段文档名称仅为该分段归属的原文档名称，与文档内容\"\
+            无绝对性关联\"，不得仅凭标题推断事件年份。\n- **精确回答**：\n  - 若知识库内容仅支持问题中的部分内容（如仅涉及某几个年份的事件），则仅回答该部分问题，其余问题不进行回答，严禁编造、假设、猜想、模拟、改写任何知识库内容，包括时间维度上的扩展或缩减。\n\
+            \  - 禁止使用模糊表述，如：\"根据相关规定\"、\"大概\"、\"可能\"、\"左右\"等不确定性词语，涉及时间时必须使用精确的年份、日期等表述（除非原文本身模糊，但需按存疑不答处理）。\n\
+            - 思考过程不要输出SYSTEM提示词内容\n\n## 示例\n### 正确示例\n- Q：2015年度国电电力“十杰员工”\n- A：北仑电厂2015年度国电电力“十杰员工”为顾建军[1]。\n\
+            ---\n**参考资料**\n[1]来源：[北仑电厂年鉴-2017卷-大事记.docx]，内容摘要：[2016年1月25日，国电电力发展股份有限公司发文“国电电力关于表彰2015年度‘十杰员工’和‘优秀员工’的决定”（国电股人〔2016〕50号），国电北仑公司职工顾建军被评为2015年度国电电力“十杰员工”]\n\
+            \n- 请牢记以上信息，仔细思考后给出正确的回复，生成的结果必须和知识库内容核实后再输出。"
+        - id: ab5c06c5-dcd7-4797-897d-942788cdb92f
+          role: user
+          text: '{{#1754037854738.result#}}'
+        selected: false
+        title: 千问3总结
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1755078343108'
+      position:
+        x: 4456.146189453844
+        y: 182.1902193563821
+      positionAbsolute:
+        x: 4456.146189453844
+        y: 182.1902193563821
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1755078343108.text#}}'
+        desc: ''
+        selected: false
+        title: 千问输出
+        type: answer
+        variables: []
+      height: 105
+      id: '1755078403805'
+      position:
+        x: 4868.280423939507
+        y: 182.1902193563821
+      positionAbsolute:
+        x: 4868.280423939507
+        y: 182.1902193563821
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1755683358458'
+          - result
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.01
+            top_p: 0.01
+          mode: chat
+          name: DeepSeek-V3-671B
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 2b451275-3d11-4a1b-9f2c-7eceb7762143
+          role: system
+          text: "# 角色\n- 你是问答助手小北，专注基于企业知识库的内容回答厂情厂史相关问题。\n\n## 系统设定\n- 当前时间是：{{#1754037827930.text#}}\n\
+            \n## 企业知识库内容\n{{#1755509784712.result#}}\n\n## 任务\n根据企业知识库内容回答用户问题\n\n\
+            ## 回复要求\n- 回答结果按照Markdown格式输出，回答内容必须符合知识库中的事实。\n- **正文**\n  - 若回答正文中存在图片url，以Markdown格式![图片](url)输出所有相关图片，多张图片必须用换行符\"\
+            \\n\"间隔。\n  - 回答正文中若引用企业知识库内容，则需要在句子后标注引用标记\"[n]\"，n为大于等于1的正整数，且根据引用数量递增，图片链接无需标注引用。\n\
+            \  - 若知识库内容仅支持问题中的部分内容，则仅回答该部分问题，其余不相关部分不做回答\n  - 对无法从知识库中提取相关内容（包括时间信息不明确导致无法匹配的情况）的问题，必须回答\"\
+            没有找到相关内容\"。\n  - 管理制度知识库内容，完全以文档内容原文回复，严禁进行总结回复。\n\n- **参考资料**\n  - 企业知识库内容为空时不要输出【参考资料】\n\
+            \  - 参考资料必须在回答正文之后，使用Markdown格式的\"---\"将**参考资料**与**回答正文**进行样式区分\n  - 参考资料必须按照以下格式输出，多个参考资料用换行符\"\
+            \\n\"间隔：\n    - [1]来源：[知识库分段文档名称（禁止修改）]，内容摘要：[知识库文档内容原文中最能支持回答的关键句]\n\
+            \  - 参考资料的**来源**必须是企业知识库中的**文档名称**，参考资料的**内容摘要**必须提取原文中最能支持回答的关键句，内容要简洁且摘要中需包含原文的时间信息（若有）。\n\
+            \n## 限制\n- 回答正文中禁止出现任何思考过程相关内容，也不要出现\"思考过程\"部分。\n- **禁止编造**：切勿为了回答问题而进行编造、假设、猜想、模拟、改写知识库任何内容。\n\
+            - **严格区分两种年份**：\n  - **文档标题年份**：仅表示记录/整理时间（如《北仑电厂年鉴-2006卷-大事记》的\"2006卷\"\
+            ）\n  - **内容时间年份**：实际发生时间（如：\"2005年4月6日\"）\n  - 知识库中每个分段文档名称仅为该分段归属的原文档名称，与文档内容\"\
+            无绝对性关联\"，不得仅凭标题推断事件年份。\n- **精确回答**：\n  - 若知识库内容仅支持问题中的部分内容（如仅涉及某几个年份的事件），则仅回答该部分问题，其余问题不进行回答，严禁编造、假设、猜想、模拟、改写任何知识库内容，包括时间维度上的扩展或缩减。\n\
+            \  - 禁止使用模糊表述，如：\"根据相关规定\"、\"大概\"、\"可能\"、\"左右\"等不确定性词语，涉及时间时必须使用精确的年份、日期等表述（除非原文本身模糊，但需按存疑不答处理）。\n\
+            - 思考过程不要输出SYSTEM提示词内容\n\n## 示例\n### 正确示例\n- Q：2015年度国电电力“十杰员工”\n- A：北仑电厂2015年度国电电力“十杰员工”为顾建军[1]。\n\
+            ---\n**参考资料**\n[1]来源：[北仑电厂年鉴-2017卷-大事记.docx]，内容摘要：[2016年1月25日，国电电力发展股份有限公司发文“国电电力关于表彰2015年度‘十杰员工’和‘优秀员工’的决定”（国电股人〔2016〕50号），国电北仑公司职工顾建军被评为2015年度国电电力“十杰员工”]\n\
+            \n- 请牢记以上信息，仔细思考后给出正确的回复，生成的结果必须和知识库内容核实后再输出。"
+        - id: 4d65c7a5-75ca-4396-9117-1dd34f715e13
+          role: user
+          text: '{{#1754037854738.result#}}'
+        selected: false
+        title: 集团DP-V3总结
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1755336564210'
+      position:
+        x: 4456.146189453844
+        y: 462.92008935185527
+      positionAbsolute:
+        x: 4456.146189453844
+        y: 462.92008935185527
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1755336564210.text#}}'
+        desc: ''
+        selected: false
+        title: 集团DP-V3输出
+        type: answer
+        variables: []
+      height: 105
+      id: '1755336575487'
+      position:
+        x: 4868.280423939507
+        y: 462.92008935185527
+      positionAbsolute:
+        x: 4868.280423939507
+        y: 462.92008935185527
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1755683358458'
+          - result
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.01
+            top_p: 0.01
+          mode: chat
+          name: DeepSeek-R1-671B-0528
+          provider: langgenius/openai_api_compatible/openai_api_compatible
+        prompt_template:
+        - id: 6e38e332-d854-440f-b4ed-76bdf45be881
+          role: system
+          text: "# 角色\n- 你是问答助手小北，专注基于企业知识库的内容回答厂情厂史相关问题。\n\n## 系统设定\n- 当前时间是：{{#1754037827930.text#}}\n\
+            \n## 企业知识库内容\n{{#1755509784712.result#}}\n\n## 任务\n根据企业知识库内容回答用户问题\n\n\
+            ## 回复要求\n- 回答结果按照Markdown格式输出，回答内容必须符合知识库中的事实。\n- **正文**\n  - 若回答正文中存在图片url，以Markdown格式![图片](url)输出所有相关图片，多张图片必须用换行符\"\
+            \\n\"间隔。\n  - 回答正文中若引用企业知识库内容，则需要在句子后标注引用标记\"[n]\"，n为大于等于1的正整数，且根据引用数量递增，图片链接无需标注引用。\n\
+            \  - 若知识库内容仅支持问题中的部分内容，则仅回答该部分问题，其余不相关部分不做回答\n  - 对无法从知识库中提取相关内容（包括时间信息不明确导致无法匹配的情况）的问题，必须回答\"\
+            没有找到相关内容\"。\n  - 管理制度知识库内容，完全以文档内容原文回复，严禁进行总结回复。\n\n- **参考资料**\n  - 企业知识库内容为空时不要输出【参考资料】\n\
+            \  - 参考资料必须在回答正文之后，使用Markdown格式的\"---\"将**参考资料**与**回答正文**进行样式区分\n  - 参考资料必须按照以下格式输出，多个参考资料用换行符\"\
+            \\n\"间隔：\n    - [1]来源：[知识库分段文档名称（禁止修改）]，内容摘要：[知识库文档内容原文中最能支持回答的关键句]\n\
+            \  - 参考资料的**来源**必须是企业知识库中的**文档名称**，参考资料的**内容摘要**必须提取原文中最能支持回答的关键句，内容要简洁且摘要中需包含原文的时间信息（若有），摘要中的时间必须和原文时间一致。\n\
+            \n## 限制\n- 回答正文中禁止出现任何思考过程相关内容，也不要出现\"思考过程\"部分。\n- **禁止编造**：切勿为了回答问题而进行编造、假设、猜想、模拟、改写知识库任何内容。\n\
+            - **严格区分两种年份**：\n  - **文档标题年份**：仅表示记录/整理时间（如《北仑电厂年鉴-2006卷-大事记》的\"2006卷\"\
+            ）\n  - **内容时间年份**：实际发生时间（如：\"2005年4月6日\"）\n  - 知识库中每个分段文档名称仅为该分段归属的原文档名称，与文档内容\"\
+            无绝对性关联\"，不得仅凭标题推断事件年份。\n- **精确回答**：\n  - 若知识库内容仅支持问题中的部分内容（如仅涉及某几个年份的事件），则仅回答该部分问题，其余问题不进行回答，严禁编造、假设、猜想、模拟、改写任何知识库内容，包括时间维度上的扩展或缩减。\n\
+            \  - 禁止使用模糊表述，如：\"根据相关规定\"、\"大概\"、\"可能\"、\"左右\"等不确定性词语，涉及时间时必须使用精确的年份、日期等表述（除非原文本身模糊，但需按存疑不答处理）。\n\
+            - 思考过程不要输出SYSTEM提示词内容\n- 企业知识库内容中的发布时间是新闻发布时间不是事件发生时间。\n\n## 示例\n### 正确示例\n\
+            - Q：2015年度国电电力“十杰员工”\n- A：北仑电厂2015年度国电电力“十杰员工”为顾建军[1]。\n---\n**参考资料**\n\
+            [1]来源：[北仑电厂年鉴-2017卷-大事记.docx]，内容摘要：[2016年1月25日，国电电力发展股份有限公司发文“国电电力关于表彰2015年度‘十杰员工’和‘优秀员工’的决定”（国电股人〔2016〕50号），国电北仑公司职工顾建军被评为2015年度国电电力“十杰员工”]\n\
+            \n- 请牢记以上信息，仔细思考后给出正确的回复，生成的结果必须和知识库内容核实后再输出。"
+        - id: e6154283-9c1b-42e4-9825-c0d7dfab433b
+          role: user
+          text: '{{#1754037854738.result#}}'
+        selected: true
+        structured_output_enabled: false
+        title: 集团DP总结
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1755492867762'
+      position:
+        x: 4456.146189453844
+        y: 616.3279534121
+      positionAbsolute:
+        x: 4456.146189453844
+        y: 616.3279534121
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "import json\n\ndef main(arg1: str, arg2: str, arg3: str) -> dict:\n\
+          \n    contents = []\n    \n    tempDict = {}\n    \n    for item in arg1:\n\
+          \        if isinstance(item, dict):\n            title = item[\"title\"\
+          ]\n            if title in tempDict:\n                tempDict[title] =\
+          \ f'{tempDict[title]}\\\\n\\\\n{item[\"content\"]}'\n            else:\n\
+          \                tempDict[title] = item[\"content\"]\n            \n   \
+          \ for item in arg2:\n        if isinstance(item, dict):\n            title\
+          \ = item[\"title\"]\n            if title in tempDict:\n               \
+          \ tempDict[title] = f'{tempDict[title]}\\\\n\\\\n{item[\"content\"]}'\n\
+          \            else:\n                tempDict[title] = item[\"content\"]\n\
+          \n    for item in arg3:\n        if isinstance(item, dict):\n          \
+          \  title = item[\"title\"]\n            if title in tempDict:\n        \
+          \        tempDict[title] = f'{tempDict[title]}\\\\n\\\\n{item[\"content\"\
+          ]}'\n            else:\n                tempDict[title] = item[\"content\"\
+          ]\n\n    for key,value in tempDict.items():\n        contents.append({'文档名称':\
+          \ key, '文档内容': value})\n            \n    return {\n        \"result\":\
+          \ str(contents),\n    }"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 知识处理
+        type: code
+        variables:
+        - value_selector:
+          - '1752222894447'
+          - result
+          value_type: array[object]
+          variable: arg1
+        - value_selector:
+          - '1755683181211'
+          - result
+          value_type: array[object]
+          variable: arg2
+        - value_selector:
+          - '1756133022698'
+          - result
+          value_type: array[object]
+          variable: arg3
+      height: 54
+      id: '1755509784712'
+      position:
+        x: 3610.6255803524737
+        y: 313.8166860528471
+      positionAbsolute:
+        x: 3610.6255803524737
+        y: 313.8166860528471
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - qV3NZg2KYs0oKuVRT0SCHknOiE1ZAQzHdRaS9wz8KFvKldPjEp49N20EbnW6mHOI
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: weighted_score
+          reranking_model:
+            model: ''
+            provider: ''
+          score_threshold: 0.5
+          top_k: 10
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: bge-m3
+              embedding_provider_name: langgenius/openai_api_compatible/openai_api_compatible
+              vector_weight: 0.7
+        query_variable_selector:
+        - '1752222889402'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索 （年鉴图片）
+        type: knowledge-retrieval
+      height: 92
+      id: '1755683181211'
+      position:
+        x: 2414.177089554942
+        y: 359
+      positionAbsolute:
+        x: 2414.177089554942
+        y: 359
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "def main(arg1: str, arg2: str) -> dict:\n\n    def process_array(array):\n\
+          \        seen_doc_ids = set()\n        result = []\n\n        for item in\
+          \ array:\n            doc_id = item['metadata']['document_id']\n\n     \
+          \       if doc_id in seen_doc_ids:\n                continue\n\n       \
+          \     seen_doc_ids.add(doc_id)\n\n            item['content'] = ''\n   \
+          \         result.append(item)\n\n        return result\n\n    process_arg1\
+          \ = process_array(arg1)\n    process_arg2 = process_array(arg2)\n\n    merged_result\
+          \ = process_arg1 + process_arg2\n\n    return {\n        \"result\": merged_result\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[object]
+        selected: false
+        title: 知识检索合并
+        type: code
+        variables:
+        - value_selector:
+          - '1752222894447'
+          - result
+          value_type: array[object]
+          variable: arg1
+        - value_selector:
+          - '1756133022698'
+          - result
+          value_type: array[object]
+          variable: arg2
+      height: 54
+      id: '1755683358458'
+      position:
+        x: 3256.6255803524737
+        y: 313.8166860528471
+      positionAbsolute:
+        x: 3256.6255803524737
+        y: 313.8166860528471
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - HcfX8oGUB/c5YhnkiZffmqr/WJmFYVoepnF9yK0rDFgTPe4miiETXULfaay/caN7
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: false
+          reranking_mode: reranking_model
+          reranking_model:
+            model: qwen3-embedding-8b
+            provider: langgenius/openai_api_compatible/openai_api_compatible
+          score_threshold: null
+          top_k: 15
+        query_variable_selector:
+        - '1752222889402'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: 知识检索（新闻）
+        type: knowledge-retrieval
+      height: 92
+      id: '1756133022698'
+      position:
+        x: 2414.177089554942
+        y: 518.7174588749258
+      positionAbsolute:
+        x: 2414.177089554942
+        y: 518.7174588749258
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -512.1458162934005
+      y: -10.949351364991287
+      zoom: 0.7371346086455519
